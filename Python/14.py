@@ -18,14 +18,16 @@
 # Which starting number, under one million, produces the longest chain?
 # endregion
 
-answer = 0
+
+num = 0
 maxLen = 0
 lenList = []
 
-def collatzLen(n, length=0):
+
+def collatzLen(n, length=1):
     """
     Return length of collatz sequence for number n
-    
+
     n: a natural number
     Returns: length of Collatz sequence
     """
@@ -35,17 +37,16 @@ def collatzLen(n, length=0):
     elif n % 2 == 0:
         return collatzLen(int(n/2), length + 1)
     # odd
-    elif n % 2 == 1:
+    else:
         return collatzLen(3*n + 1, length + 1)
-    
-    lenList.append((n,length))
 
+    lenList.append((n, length))
 
 
 for n in range(1_000_000, 1, -1):
+
     if collatzLen(n) > maxLen:
-        answer = n
+        num = n
+
         maxLen = collatzLen(n)
-        print(answer, maxLen)
-
-
+        print(num, maxLen)
